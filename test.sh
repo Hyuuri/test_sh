@@ -23,8 +23,16 @@ do
 			until [ $flag -eq 0 ]
 			do
 				echo "wait enter key..."
-				read Wait
-				printf '\a' # arert!
+				while [ 0 -eq 0 ]
+				do
+					read KEY
+					if [ $KEY -eq $'x38' ]
+					then
+						break
+					fi
+				done
+
+				echo ^G  # arert!
 				# timeout -sKILL 2 rosbag record /canera1/image_color /camera2/image_color /k4a/body_tracking_data_sync /k4a/depth_to_rgb/image_raw /k4a/rgb/image_raw /tf /tf_static -O ./${th}/${where}/${num}.bag
 			
 				echo "Snap done"
